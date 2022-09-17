@@ -47,9 +47,9 @@ namespace MochiCryptUnpacker
                 {
                     swf.Parse(data);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Log($"->{fi.Name} 不是有效的 SWF 文件 (Invalid SWF)");
+                    Log($"->{fi.Name} 不是有效的 SWF 文件 (Invalid SWF) ({ex})");
                     continue;
                 }
                 try
@@ -60,9 +60,9 @@ namespace MochiCryptUnpacker
                     File.WriteAllBytes($"{fi.DirectoryName}\\{Path.GetFileNameWithoutExtension(fi.Name)}_Unpacked.swf", decrypted);
                     Log($"->{fi.Name} 解密成功 (Success)");
                 }
-                catch
+                catch (Exception ex)
                 {
-                    Log($"->{fi.Name} 解密失败 (Failed)");
+                    Log($"->{fi.Name} 解密失败 (Failed) ({ex})");
                     fail = true;
                     continue;
                 }
